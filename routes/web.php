@@ -25,6 +25,7 @@ Route::get('/admin', 'HomeController@index');
 
 /* /crud products */
 Route::get('/products', 'ProductController@index')->name('products.index');
+Route::get('/products/dash', 'ProductController@dashboard')->name('products.dashboard');
 Route::get('/products/create', 'ProductController@create')->name('product.create');
 Route::post('/products/store', 'ProductController@store')->name('product.store');
 Route::get('/products/{product}', 'ProductController@show')->name('product.show');

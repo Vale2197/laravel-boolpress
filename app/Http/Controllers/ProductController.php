@@ -7,6 +7,13 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+
+    public function dashboard()
+    {
+        $products = Product::all();
+
+        return view('admin.dashboard', compact('products'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +67,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        
+        return view('admin.edit', compact('product'));
     }
 
     /**
@@ -72,7 +80,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product_new = $request->all();
+        
+        $product->update($product_new);
+
+        return redirect()->route('products.dashboard');
     }
 
     /**
@@ -83,6 +95,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.dashboard');
+
     }
 }
