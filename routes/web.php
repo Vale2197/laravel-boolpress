@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home')->name('home');
-});
+    return view('home');
+})->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index');
+
+
+/* /crud products */
+Route::get('/products', 'ProductController@index')->name('products.index');
+Route::get('/products/create', 'ProductController@create')->name('product.create');
+Route::post('/products/store', 'ProductController@store')->name('product.store');
+Route::get('/products/{product}', 'ProductController@show')->name('product.show');
+Route::get('/products/{product}/edit', 'ProductController@edit')->name('product.edit');
+Route::put('/products/{product}', 'ProductController@update')->name('product.update');
+Route::delete('/products/{product}', 'ProductController@destroy')->name('product.destroy');
+
