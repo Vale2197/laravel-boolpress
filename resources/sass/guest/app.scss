@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '../bootstrapComponents/cssHeader.scss';
+
+.my_header {
+    background-color: white;
+}
+
