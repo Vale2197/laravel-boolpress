@@ -70,7 +70,7 @@
                             {{-- /price --}}
 
                             <td>
-                                {{$product->description}}
+                                {{$product->description == null ? 'null' : $product->description}}
                             </td>
                             {{-- /description --}}
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -15,11 +16,18 @@ class PostController extends Controller
     public function index()
     {
         //
+
+        $posts = Post::all();
+
+        return view('guest.Post.index', compact('posts'));
     }
 
     public function dashboard()
     {
         //
+        $posts = Post::all();
+
+        return view('admin.Post.dashboard', compact('posts'));
     }
 
     /**
@@ -52,6 +60,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+
+        return view('guest.Post.show', compact('post'));
     }
 
     /**
@@ -63,6 +73,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
+        $categories = Category::all();
+
+        return view('admin.Post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -75,6 +88,11 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        $new_post = $request->all();
+
+        $post->update($new_post);
+
+        return redirect()->route('posts.dashboard');
     }
 
     /**
