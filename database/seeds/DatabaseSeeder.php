@@ -12,5 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(ProductSeeder::class);
+        $this->call(PostSeeder::class);
+        $this->call(CategorySeeder::class);
     }
 }
