@@ -42,7 +42,7 @@
                   <label for="category_id" class="form-label fw-bold fs-4">category: </label>
                   <select name="category_id" id="category_id">
                             <option value="">
-                                 no category
+                                no category
                             </option>
                       @foreach ($categories as $category)
                             <option value="{{$category->id}}">

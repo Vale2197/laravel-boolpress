@@ -38,6 +38,9 @@ class PostController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
+
+        return view('admin.Post.create', compact('categories'));
     }
 
     /**
@@ -49,6 +52,15 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $post = new Post();
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->image = $request->image;
+        $post->description = $request->description;
+        $post->category_id = $request->category_id;
+        $post->save();
+
+        return redirect()->route('posts.dashboard');
     }
 
     /**
@@ -104,5 +116,9 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+
+        $post->delete();
+
+        return redirect()->route('posts.dashboard');
     }
 }

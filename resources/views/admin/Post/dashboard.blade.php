@@ -7,6 +7,12 @@
 
         <div class="container">
 
+            <button class="btn btn-success">
+                <a style="text-decoration: none; color: white;" href="{{route('post.create')}}">
+                    create Post
+                </a>
+            </button>
+
             <table>
 
 
