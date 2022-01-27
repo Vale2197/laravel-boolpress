@@ -17,7 +17,6 @@ class ProductSeeder extends Seeder
             $product = new Product();
             $product->name = $faker->sentence(2);
             $product->price = $faker->numberBetween(1, 100);
-            $product->image = $faker->image();
             $product->save();
         }
     }

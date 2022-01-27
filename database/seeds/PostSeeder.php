@@ -20,7 +20,6 @@ class PostSeeder extends Seeder
             $post = new Post();
             $post->title = $faker->sentence(2);
             $post->subtitle = $faker->sentence(5);
-            $post->image = $faker->image('resources/img', 300, 300, '');
             $post->save();
 
         }
