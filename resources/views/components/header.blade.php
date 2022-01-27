@@ -5,6 +5,7 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{{route('home')}}" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="{{route('products.index')}}" class="nav-link px-2 link-dark">Products</a></li>
+                <li><a href="{{route('posts.index')}}" class="nav-link px-2 link-dark">News</a></li>
             </ul>
              
             @guest
@@ -23,7 +24,11 @@
                             {{Auth::user()->name}}
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="{{route('products.dashboard')}}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{route('products.dashboard')}}">Admin Products</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item" href="{{route('posts.dashboard')}}">Admin News</a></li>
 
                             <li><hr class="dropdown-divider"></li>
                             <li>

@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/admin', 'HomeController@index');
 
 
-/* /crud products */
+/* crud products */
 Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/dash', 'ProductController@dashboard')->name('products.dashboard');
 Route::get('/products/create', 'ProductController@create')->name('product.create');
@@ -33,3 +33,14 @@ Route::get('/products/{product}/edit', 'ProductController@edit')->name('product.
 Route::put('/products/{product}', 'ProductController@update')->name('product.update');
 Route::delete('/products/{product}', 'ProductController@destroy')->name('product.destroy');
 
+
+
+/* crud posts */
+Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('/posts/dash', 'PostController@dashboard')->name('posts.dashboard');
+Route::get('/posts/create', 'PostController@create')->name('post.create');
+Route::post('/posts/store', 'PostController@store')->name('post.store');
+Route::get('/posts/{post}', 'PostController@show')->name('post.show');
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('post.edit');
+Route::put('/posts/{post}', 'PostController@update')->name('post.update');
+Route::delete('/posts/{post}', 'PostController@destroy')->name('post.destroy');

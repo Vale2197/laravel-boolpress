@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return view('admin.dashboard', compact('products'));
+        return view('admin.Product.dashboard', compact('products'));
     }
     /**
      * Display a listing of the resource.
@@ -68,7 +68,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         
-        return view('admin.edit', compact('product'));
+        return view('admin.Product.edit', compact('product'));
     }
 
     /**
