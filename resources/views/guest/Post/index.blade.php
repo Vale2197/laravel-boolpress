@@ -4,7 +4,54 @@
 
     <div class="products_index">
 
+        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+              <h1 class="display-4 fst-italic">OUR NEWS</h1>
+              <p class="lead my-3">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, numquam? Quo, illum dolores debitis enim magnam voluptates vel sed ab, ad, totam aperiam molestiae libero eum ipsam! Nostrum, assumenda exercitationem?
+              </p>
+            </div>
+        </div>
+        
         <div class="container">
+           
+            <div class="row mb-2 flex-wrap">
+
+                @foreach ($posts as $post)
+                    
+                    <div class="col-md-6">
+                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static justify-content-around">
+                                <strong class="d-inline-block mb-2 text-primary">
+                                    {{$post->category_id == null ? 'No category yet' : $post->category->name}}
+                                </strong>
+                                <h3 class="mb-0">{{$post->title}}</h3>
+                                <div class="mb-1 text-muted">{{$post->subtitle}}</div>
+                                <a href="{{route('post.show', $post->id)}}" class="stretched-link">Continue reading</a>
+                            </div>
+                            <div class="col-4 d-none d-lg-block">
+                                <img style="width: 100%; height: 100%; object-fit:cover;" src="{{$post->image}}" alt="#">
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+    
+        </div> 
+
+        <div class="my_pagination">
+            {{$posts->links()}}
+        </div>
+    </div>
+
+@endsection
+
+
+
+
+
+
+        {{-- <div class="container">
             <div class="title mb-4 d-flex justify-content-between">
                 <h1 class="m-0">
                     News:
@@ -34,7 +81,4 @@
             </div>
 
         </div>
-
-    </div>
-    
-@endsection
+ --}}

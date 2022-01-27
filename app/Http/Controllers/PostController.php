@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         //
 
-        $posts = Post::all();
+        $posts = Post::paginate(10);
 
         return view('guest.Post.index', compact('posts'));
     }

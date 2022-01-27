@@ -37,7 +37,7 @@
                     <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
                         <img style=" width: 100%;
                         height: 100%;
-                        object-fit: cover;" src="https://picsum.photos/700/250" alt="#"
+                        object-fit: cover;" src="https://picsum.photos/700/300" alt="#"
                         >
                     </div>
                 </div>
