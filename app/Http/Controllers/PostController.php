@@ -16,20 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-       $_posts = Post::all();
-
-       $_tags = Tag::all();
-
-       $tag_ids = $_tags->pluck('id')->toArray();
-
-       foreach ($_posts as $post) {
-           # code...
-           $rand = $tag_ids[array_rand($tag_ids)];
-
-           $post->tags()->attach($rand);
-       }
-
-       $posts = Post::all();
+      
+       $posts = Post::paginate(10);
 
         return view('guest.Post.index', compact('posts'));
     }

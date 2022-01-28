@@ -27,6 +27,7 @@
                                 </strong>
                                 <h3 class="mb-0">{{$post->title}}</h3>
                                 <div class="mb-1 text-muted">{{$post->subtitle}}</div>
+                            
                                 <a href="{{route('post.show', $post->id)}}" class="stretched-link">Continue reading</a>
                             </div>
                             <div class="col-4 d-none d-lg-block">
@@ -40,7 +41,7 @@
         </div> 
 
         <div class="my_pagination">
-            {{-- {{$posts->links()}} --}}
+             {{$posts->links()}} 
         </div>
     </div>
 
