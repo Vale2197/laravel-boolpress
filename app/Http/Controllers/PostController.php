@@ -52,13 +52,16 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-        $post = new Post();
-        $post->title = $request->title;
-        $post->subtitle = $request->subtitle;
-        $post->image = $request->image;
-        $post->description = $request->description;
-        $post->category_id = $request->category_id;
-        $post->save();
+
+        $validated_data = $request->validate([
+            'title' => ['required', 'max:200'],
+            'subtitle' => ['max:200', 'nullable'],
+            'text' => ['nullable'],
+            'image' => ['max:200', 'nullable']
+        ]);
+
+
+        Post::create($validated_data);
 
         return redirect()->route('posts.dashboard');
     }
@@ -100,7 +103,12 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
-        $new_post = $request->all();
+        $new_post = $request->validate([
+            'title' => ['required', 'max:200'],
+            'subtitle' => ['max:200', 'nullable'],
+            'text' => ['nullable'],
+            'image' => ['max:200', 'nullable']
+        ]);
 
         $post->update($new_post);
 

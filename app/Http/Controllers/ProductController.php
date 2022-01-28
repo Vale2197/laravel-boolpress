@@ -80,7 +80,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product_new = $request->all();
+        $product_new = $request->validate([
+            'name' => ['max:200', 'required'],
+            'description' => ['nullable'],
+            'price' => ['numeric', 'required'],
+            'image' => ['required']
+        ]);
         
         $product->update($product_new);
 

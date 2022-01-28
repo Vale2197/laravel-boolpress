@@ -12,11 +12,11 @@
                
                     <a class="nav-link link-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
                
-                @if (Route::has('register'))
+               {{--  @if (Route::has('register')) --}}
                     
                     <a class="nav-link link-dark" href="{{ route('register') }}">{{ __('Register') }}</a>
                    
-                @endif
+               {{--  @endif --}}
             @else
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
