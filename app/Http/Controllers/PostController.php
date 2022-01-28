@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -15,9 +16,20 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+       $_posts = Post::all();
 
-        $posts = Post::paginate(10);
+       $_tags = Tag::all();
+
+       $tag_ids = $_tags->pluck('id')->toArray();
+
+       foreach ($_posts as $post) {
+           # code...
+           $rand = $tag_ids[array_rand($tag_ids)];
+
+           $post->tags()->attach($rand);
+       }
+
+       $posts = Post::all();
 
         return view('guest.Post.index', compact('posts'));
     }

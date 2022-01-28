@@ -48,8 +48,7 @@
             {{$products->links()}}
         </div>
                
-    </div>
-    
+    </div>    
 @endsection
 
        {{--  <div class="container">

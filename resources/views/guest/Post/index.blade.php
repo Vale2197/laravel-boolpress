@@ -40,7 +40,7 @@
         </div> 
 
         <div class="my_pagination">
-            {{$posts->links()}}
+            {{-- {{$posts->links()}} --}}
         </div>
     </div>
 
