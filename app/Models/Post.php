@@ -9,6 +9,7 @@ class Post extends Model
     //
     protected $table = 'posts';
 
+    
     protected $fillable = ['title', 'subtitle', 'description', 'image', 'category_id'];
 
     public function category() {
@@ -18,6 +19,6 @@ class Post extends Model
 
     public function tags() {
 
-        return $this->belongsToMany('App\Models\Tag', 'post_tag', 'tag_id', 'post_id');
+        return $this->belongsToMany('App\Models\Tag', 'post_tag', 'post_id', 'tag_id');
     }
 }
