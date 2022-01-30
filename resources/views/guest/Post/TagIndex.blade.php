@@ -45,9 +45,6 @@
     
         </div> 
 
-        <div class="my_pagination">
-             {{$posts->links()}} 
-        </div>
     </div>
 
 @endsection

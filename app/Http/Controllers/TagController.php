@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Post;
 
 class TagController extends Controller
 {
@@ -11,9 +13,15 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Tag $tag)
     {
         //
+       
+        $posts = $tag->posts;
+      /*   $categories = Category::all();
+        $posts = $tag->posts(); */
+
+        return view('guest.Post.tagIndex', compact('posts'));
     }
 
     /**
@@ -43,7 +51,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag $tag)
     {
         //
     }
@@ -51,10 +59,10 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -63,10 +71,10 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -74,10 +82,10 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
         //
     }

@@ -16,10 +16,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        
+
         $posts = Post::paginate(10);
 
-        return view('guest.Post.index', compact('posts'));
+        $categories = Category::all();
+
+        return view('guest.Post.index', compact('posts', 'categories'));
     }
 
     public function dashboard()

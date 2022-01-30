@@ -44,3 +44,9 @@ Route::get('/posts/{post}', 'PostController@show')->name('post.show');
 Route::get('/posts/{post}/edit', 'PostController@edit')->name('post.edit');
 Route::put('/posts/{post}', 'PostController@update')->name('post.update');
 Route::delete('/posts/{post}', 'PostController@destroy')->name('post.destroy');
+
+
+
+
+/* TAGS */
+Route::get('/tag/{tag}', 'TagController@index')->name('tag.index');

@@ -12,7 +12,10 @@
             <h3>
                 {{$post->subtitle}}
             </h3>
-
+            @foreach ($post->tags as $tag)
+                                
+                <div class="mb-1"> <a href="{{ route('tag.index', $tag->id ) }}"> {{$tag->name}} </a></div>
+            @endforeach
             <p>
                 {{$post->category_id == null ? 'Questo post non ha ancora una categoria' : $post->category->name}}
             </p>
