@@ -50,6 +50,20 @@
                       @endforeach
                   </select>
 
+                  <select name="tag_id[]" multiple="" id="tag_id">
+                    <option value="" disabled>
+                        no tags
+                    </option>
+                    @foreach ($tags as $tag)
+
+                        <option value="{{$tag->id}}">
+                            {{$tag->name}}
+                        </option>
+
+                    @endforeach
+                </select>
+
+
                   <button type="submit" class="btn btn-warning mt-3 fw-bold">Update</button>
                 </div>
                 

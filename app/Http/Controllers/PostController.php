@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::paginate(10);
+        $posts = Post::paginate(12);
 
         $categories = Category::all();
 
@@ -42,7 +42,9 @@ class PostController extends Controller
         //
         $categories = Category::all();
 
-        return view('admin.Post.create', compact('categories'));
+        $tags = Tag::all();
+
+        return view('admin.Post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -59,11 +61,14 @@ class PostController extends Controller
             'title' => ['required', 'max:200'],
             'subtitle' => ['max:200', 'nullable'],
             'text' => ['nullable'],
-            'image' => ['max:200', 'nullable']
+            'image' => ['max:200', 'nullable'],
         ]);
 
 
-        Post::create($validated_data);
+        
+        $post = Post::create($validated_data);
+
+        $post->tags()->attach($request->input('tag_id'));
 
         return redirect()->route('posts.dashboard');
     }
@@ -91,8 +96,9 @@ class PostController extends Controller
     {
         //
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.Post.edit', compact('post', 'categories'));
+        return view('admin.Post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -112,7 +118,13 @@ class PostController extends Controller
             'image' => ['max:200', 'nullable']
         ]);
 
+            $post->tags()->sync($request->input('tag_id'));
+
         $post->update($new_post);
+
+  
+           
+     
 
         return redirect()->route('posts.dashboard');
     }
