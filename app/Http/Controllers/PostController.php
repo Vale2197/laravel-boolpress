@@ -64,11 +64,14 @@ class PostController extends Controller
             'image' => ['max:200', 'nullable'],
         ]);
 
-
-        
-        $post = Post::create($validated_data);
-
+        $post = new Post();
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->description = $request->description;
+        $post->image = $request->image;
+        $post->category_id = $request->category_id;
         $post->tags()->attach($request->input('tag_id'));
+        $post->save();
 
         return redirect()->route('posts.dashboard');
     }
@@ -117,8 +120,9 @@ class PostController extends Controller
             'text' => ['nullable'],
             'image' => ['max:200', 'nullable']
         ]);
+        $post->category_id = $request->input('category_id'); 
 
-            $post->tags()->sync($request->input('tag_id'));
+        $post->tags()->sync($request->input('tag_id'));
 
         $post->update($new_post);
 
