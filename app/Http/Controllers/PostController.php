@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -38,7 +40,9 @@ class PostController extends Controller
     public function dashboard()
     {
         //
-        $posts = Post::all();
+        $user = User::find(Auth::id());
+
+            $posts = $user->posts;
 
         return view('admin.Post.dashboard', compact('posts'));
     }
@@ -84,6 +88,7 @@ class PostController extends Controller
             $post->image = $request->file('image')->store('post-imgs');
          }
         $post->category_id = $request->category_id;
+        $post->user_id = Auth::id();
 
         $post->save();
 
