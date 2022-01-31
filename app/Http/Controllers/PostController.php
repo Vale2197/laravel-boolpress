@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -142,9 +143,16 @@ class PostController extends Controller
 
         $post->tags()->sync($request->input('tag_id'));
 
+        if($post->image != 'post-imgs/baby-yoda.jpg') {
+
+            Storage::delete($post->image);
+        }
+
         if($request->file('image')) {
            
            $new_post['image'] = $request->file('image')->store('post-imgs');
+
+
         }
 
         $post->update($new_post);
@@ -162,6 +170,10 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+        if($post->image != 'post-imgs/baby-yoda.jpg') {
+
+            Storage::delete($post->image);
+        }
 
         $post->delete();
 
