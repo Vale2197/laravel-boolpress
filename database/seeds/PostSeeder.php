@@ -3,6 +3,7 @@
 use App\Models\Post;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use App\Models\Tag;
 
 class PostSeeder extends Seeder
 {
@@ -14,6 +15,7 @@ class PostSeeder extends Seeder
     public function run(Faker $faker)
     {
         //
+       
 
         for ($i=0; $i < 20; $i++) { 
 
@@ -23,6 +25,7 @@ class PostSeeder extends Seeder
             $post->save();
 
         }
+
 
     }
 }

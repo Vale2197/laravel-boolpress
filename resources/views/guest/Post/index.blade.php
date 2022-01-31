@@ -36,7 +36,7 @@
                                 <a href="{{route('post.show', $post->id)}}" class="stretched-link">Continue reading</a>
                             </div>
                             <div class="col-4 d-none d-lg-block">
-                                <img style="width: 100%; height: 100%; object-fit:cover;" src="{{$post->image}}" alt="#">
+                                <img style="width: 100%; height: 100%; object-fit:cover;" src="{{asset('storage/' . $post->image)}}" alt="#">
                             </div>
                         </div>
                     </div>
