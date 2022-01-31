@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
-use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -79,10 +78,18 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->description = $request->description;
-        $post->image = $request->image;
+        if($request->file('image')) {
+           
+            $post->image = $request->file('image')->store('post-imgs');
+         }
         $post->category_id = $request->category_id;
-        $post->tags()->attach($request->input('tag_id'));
+
         $post->save();
+
+        if($request->input('tag_id')) {
+
+            $post->tags()->attach($request->input('tag_id')); 
+        }
 
         return redirect()->route('posts.dashboard');
     }
@@ -137,7 +144,7 @@ class PostController extends Controller
 
         if($request->file('image')) {
            
-            $path = $request->file('image')->store('post-imgs');
+           $new_post['image'] = $request->file('image')->store('post-imgs');
         }
 
         $post->update($new_post);

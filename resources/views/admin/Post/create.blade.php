@@ -15,7 +15,7 @@
                 </div>
             @endif
 
-            <form action="{{route('post.store')}}" method="post">
+            <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
     
                 <div class="mb-3">
@@ -35,7 +35,7 @@
                   {{-- // image --}}
 
                   <label for="image" class="form-label fw-bold fs-4">image:</label>
-                  <input type="text" name="image" id="image"  class="form-control @error('image') is-invalid @enderror"  value="{{old('image')}}" aria-describedby="helpId">
+                  <input type="file" name="image" id="image"  class="form-control @error('image') is-invalid @enderror"  accept="image/*" aria-describedby="helpId">
                   {{-- // URL IMAGE --}}
 
                   <label for="category_id" class="form-label fw-bold fs-4">category: </label>
