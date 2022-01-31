@@ -15,7 +15,7 @@
                 </div>
             @endif
 
-            <form action="{{route('post.update', $post->id)}}" method="post">
+            <form action="{{route('post.update', $post->id)}}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
     
@@ -36,7 +36,7 @@
                     {{-- // image --}}
 
                     <label for="image" class="form-label fw-bold fs-4">image:</label>
-                    <input type="text" name="image" id="image"  class="form-control @error('image') is-invalid @enderror"  value="{{$post->image}}" aria-describedby="helpId">
+                    <input type="file" name="image" id="image"  class="form-control @error('image') is-invalid @enderror" accept="image/*" aria-describedby="helpId">
                     {{-- // URL IMAGE --}}
 
                     <label for="category_id" class="form-label fw-bold fs-4">category: </label>

@@ -77,7 +77,7 @@
                             {{-- /price --}}
                             
                             <td>
-                                <img style="width: 100px; height: 100px; object-fit:cover;" src="{{$post->image}}" alt="#">
+                                <img style="width: 100px; height: 100px; object-fit:cover;" src="{{asset('storage/' . $post->image)}}" alt="#">
                             </td>
                             {{-- /series --}}
 

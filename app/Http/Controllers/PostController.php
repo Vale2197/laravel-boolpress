@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
@@ -19,7 +21,16 @@ class PostController extends Controller
     
         $posts = Post::paginate(12);
 
+        
         $categories = Category::all();
+        
+        /* $posts = Post::all();
+        $tags = Tag::all()->pluck('id');
+
+        foreach ($posts as $post) {
+            # code...
+            $post->tags()->attach($tags->random());
+        } */
 
         return view('guest.Post.index', compact('posts', 'categories'));
     }
@@ -124,11 +135,13 @@ class PostController extends Controller
 
         $post->tags()->sync($request->input('tag_id'));
 
-        $post->update($new_post);
-
-  
+        if($request->file('image')) {
            
-     
+            $path = $request->file('image')->store('post-imgs');
+        }
+
+        $post->update($new_post);
+ 
 
         return redirect()->route('posts.dashboard');
     }

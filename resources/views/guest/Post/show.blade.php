@@ -21,7 +21,7 @@
             </p>
 
             <div class="img py-5">
-                <img src="{{$post->image}}" alt="#">
+                <img src="{{asset('storage/' . $post->image)}}" alt="#">
             </div>
   
         </div>
