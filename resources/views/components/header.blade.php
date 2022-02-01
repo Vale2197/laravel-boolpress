@@ -6,6 +6,7 @@
                 <li><a href="{{route('home')}}" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="{{route('products.index')}}" class="nav-link px-2 link-dark">Products</a></li>
                 <li><a href="{{route('posts.index')}}" class="nav-link px-2 link-dark">News</a></li>
+                <li><a href="{{route('contacts.index')}}" class="nav-link px-2 link-dark">Contact Us</a></li>
             </ul>
              
             @guest
@@ -29,6 +30,10 @@
                             <li><hr class="dropdown-divider"></li>
 
                             <li><a class="dropdown-item" href="{{route('posts.dashboard')}}">Admin News</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item" href="{{route('contacts.dashboard')}}">Contacts</a></li>
 
                             <li><hr class="dropdown-divider"></li>
                             <li>

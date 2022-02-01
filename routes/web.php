@@ -50,3 +50,11 @@ Route::delete('/posts/{post}', 'PostController@destroy')->name('post.destroy');
 
 /* TAGS */
 Route::get('/tag/{tag}', 'TagController@index')->name('tag.index');
+
+
+/* Contacts */
+Route::get('/contacts', 'ContactController@index')->name('contacts.index');
+Route::post('/contacts', 'ContactController@sendMail')->name('contact.mail');
+Route::get('/contacts/dash', 'ContactController@dashboard')->name('contacts.dashboard');
+Route::get('/contacts/{contact}', 'ContactController@show')->name('contact.show');
+Route::delete('/contacts/{contact}', 'ContactController@destroy')->name('contact.destroy');
