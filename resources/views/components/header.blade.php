@@ -7,6 +7,7 @@
                 <li><a href="{{route('products.index')}}" class="nav-link px-2 link-dark">Products</a></li>
                 <li><a href="{{route('posts.index')}}" class="nav-link px-2 link-dark">News</a></li>
                 <li><a href="{{route('contacts.index')}}" class="nav-link px-2 link-dark">Contact Us</a></li>
+                <li><a href="{{route('posts.blog')}}" class="nav-link px-2 link-dark">Post_blog</a></li>
             </ul>
              
             @guest

@@ -37,6 +37,11 @@ class PostController extends Controller
         return view('guest.Post.index', compact('posts', 'categories'));
     }
 
+    public function blog() {
+
+        return view('guest.Post.blog');
+    }
+
     public function dashboard()
     {
         //

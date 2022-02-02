@@ -36,6 +36,7 @@ Route::delete('/products/{product}', 'ProductController@destroy')->name('product
 
 
 /* crud posts */
+Route::get('/posts/blog', 'PostController@blog')->name('posts.blog');
 Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/dash', 'PostController@dashboard')->name('posts.dashboard');
 Route::get('/posts/create', 'PostController@create')->name('post.create');
