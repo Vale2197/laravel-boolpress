@@ -8,6 +8,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+
+const someNews = Vue.component('some-f-news', require('./Pages/SomeNews.vue').default);
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,7 +35,20 @@ Vue.component('posts-component', require('./components/PostsComponent.vue').defa
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+ const routes = [
+  { 
+    path: '/someNews', 
+    component: someNews,
+    name: 'some-news' 
+  },
+  
+]
+
+const router = new VueRouter({
+  routes // short for `routes: routes`
+})
 
 const app = new Vue({
     el: '#app',
+    router
 });
