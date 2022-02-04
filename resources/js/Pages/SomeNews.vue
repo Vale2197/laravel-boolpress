@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         nextPage(){
-           axios.get('api/post/api?page=' + this.page.current_page++).then(r => {
+           axios.get('api/post/api?page=' + (this.page.current_page == 8 ? this.page.current_page = 1 : 1 +this.page.current_page++)).then(r => {
                this.posts = r.data.data
            })
         }

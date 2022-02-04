@@ -5171,7 +5171,7 @@ __webpack_require__.r(__webpack_exports__);
     nextPage: function nextPage() {
       var _this = this;
 
-      axios.get('api/post/api?page=' + this.page.current_page++).then(function (r) {
+      axios.get('api/post/api?page=' + (this.page.current_page == 8 ? this.page.current_page = 1 : 1 + this.page.current_page++)).then(function (r) {
         _this.posts = r.data.data;
       });
     }
