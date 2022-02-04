@@ -43,7 +43,7 @@ Vue.component('posts-component', require('./components/PostsComponent.vue').defa
     name: 'some-news' 
   },
   { 
-    path: '/newHome', 
+    path: '/', 
     component: newHome,
     name: 'new-home' 
   },

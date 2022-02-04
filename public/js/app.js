@@ -5142,17 +5142,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      posts: null
+      posts: null,
+      links: null,
+      page: null
     };
   },
+  methods: {
+    nextPage: function nextPage() {
+      var _this = this;
+
+      axios.get('api/post/api?page=' + this.page.current_page++).then(function (r) {
+        _this.posts = r.data.data;
+      });
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('api/post/api').then(function (r) {
-      _this.posts = r.data.data;
+      console.log(r.data.links, r.data.meta);
+      _this2.posts = r.data.data;
+      _this2.links = r.data.links;
+      _this2.page = r.data.meta;
     });
   }
 });
@@ -41493,55 +41524,116 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._v("\n    view news\n\n    "),
-    _c(
-      "div",
-      { staticClass: "row g-3" },
-      _vm._l(_vm.posts, function (post) {
-        return _c("div", { key: post.id, staticClass: "col-4" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card",
-              staticStyle: { width: "18rem", height: "100%" },
-            },
-            [
-              _c("img", {
-                staticClass: "card-img-top",
-                attrs: { src: "storage/" + post.image, alt: "#" },
-              }),
-              _vm._v(" "),
+    _vm._v("\n    view news\n\n     "),
+    _vm.posts == null
+      ? _c("p", [_vm._v("\n        🦄 loading..\n    ")])
+      : _c(
+          "div",
+          { staticClass: "row g-3" },
+          _vm._l(_vm.posts, function (post) {
+            return _c("div", { key: post.id, staticClass: "col-4" }, [
               _c(
                 "div",
                 {
-                  staticClass:
-                    "card-body d-flex flex-column justify-content-between",
+                  staticClass: "card",
+                  staticStyle: { width: "18rem", height: "100%" },
                 },
                 [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(post.title)),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(post.subtitle)),
-                  ]),
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: { src: "storage/" + post.image, alt: "#" },
+                  }),
                   _vm._v(" "),
                   _c(
-                    "a",
-                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                    [_vm._v("#")]
+                    "div",
+                    {
+                      staticClass:
+                        "card-body d-flex flex-column justify-content-between",
+                    },
+                    [
+                      _c("h5", { staticClass: "card-title" }, [
+                        _vm._v(_vm._s(post.title)),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _vm._v(_vm._s(post.subtitle)),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { href: "#" },
+                        },
+                        [_vm._v("#")]
+                      ),
+                    ]
                   ),
                 ]
               ),
-            ]
-          ),
-        ])
-      }),
-      0
+            ])
+          }),
+          0
+        ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row", staticStyle: { position: "fixed", bottom: "0" } },
+      [
+        _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+          _vm.page
+            ? _c(
+                "ul",
+                { staticClass: "pagination" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._l(_vm.page.last_page, function (page) {
+                    return _c("li", { key: page, staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "page-link", attrs: { href: "#" } },
+                        [_vm._v(_vm._s(page))]
+                      ),
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.nextPage()
+                          },
+                        },
+                      },
+                      [_vm._v("Next")]
+                    ),
+                  ]),
+                ],
+                2
+              )
+            : _vm._e(),
+        ]),
+      ]
     ),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "page-item" }, [
+      _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+        _vm._v("Previous"),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -57158,7 +57250,7 @@ var routes = [{
   component: someNews,
   name: 'some-news'
 }, {
-  path: '/newHome',
+  path: '/',
   component: newHome,
   name: 'new-home'
 }];

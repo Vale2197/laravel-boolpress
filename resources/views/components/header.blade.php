@@ -3,7 +3,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><router-link to="/newHome" class="nav-link px-2 link-dark"> Home </router-link></li>
+                <li><router-link to="/" class="nav-link px-2 link-dark"> Home </router-link></li>
                 {{-- <li><a href="{{route('products.index')}}" class="nav-link px-2 link-dark">Products</a></li>
                 <li><a href="{{route('posts.index')}}" class="nav-link px-2 link-dark">News</a></li>
                 <li><a href="{{route('contacts.index')}}" class="nav-link px-2 link-dark">Contact Us</a></li>

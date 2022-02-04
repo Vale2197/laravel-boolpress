@@ -2,7 +2,11 @@
     <div class="container">
         view news
 
-        <div class="row g-3">
+         <p v-if="posts == null">
+            🦄 loading..
+        </p>
+
+        <div class="row g-3" v-else>
             <div class="col-4" v-for="post in posts" :key="post.id"> 
                <div class="card" style="width: 18rem; height: 100%;">
                     <img :src="'storage/' + post.image" class="card-img-top" alt="#">
@@ -14,6 +18,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="row" style="
+            position: fixed;
+            bottom: 0;"
+            >
+            <nav aria-label="Page navigation example">
+                <ul class="pagination" v-if="page">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li v-for="page in page.last_page" :key="page" class="page-item"><a class="page-link" href="#">{{page}}</a></li>
+                    <li class="page-item"><a class="page-link" @click="nextPage()" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </template>
 
@@ -21,13 +38,24 @@
 export default {
     data() {
         return {
-            posts: null
+            posts: null,
+            links: null,
+            page: null,
+        }
+    },
+    methods: {
+        nextPage(){
+           axios.get('api/post/api?page=' + this.page.current_page++).then(r => {
+               this.posts = r.data.data
+           })
         }
     },
     mounted() {
         axios.get('api/post/api').then(r => {
-           
-            this.posts = r.data.data
+            console.log(r.data.links, r.data.meta);
+            this.posts = r.data.data;
+            this.links = r.data.links;
+            this.page = r.data.meta;
         })
     }
 }
