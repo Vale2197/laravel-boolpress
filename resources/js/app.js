@@ -16,6 +16,7 @@ Vue.use(VueRouter)
 
 const someNews = Vue.component('some-f-news', require('./Pages/SomeNews.vue').default);
 const newHome = Vue.component('home', require('./Pages/Home.vue').default);
+const showPost = Vue.component('show-post', require('./Pages/showPost.vue').default);
 
 
 /**
@@ -46,6 +47,11 @@ Vue.component('posts-component', require('./components/PostsComponent.vue').defa
     path: '/', 
     component: newHome,
     name: 'new-home' 
+  },
+  { 
+    path: '/show/post/:id', 
+    component: showPost,
+    name: 'show-post' 
   },
   
 ]

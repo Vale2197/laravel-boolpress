@@ -13,7 +13,7 @@
                     <div class="card-body d-flex flex-column justify-content-between">
                         <h5 class="card-title">{{post.title}}</h5>
                         <p class="card-text">{{post.subtitle}}</p>
-                        <a href="#" class="btn btn-primary">#</a>
+                        <router-link :to="'/show/post/' + post.id"> View Post </router-link>
                     </div>
                 </div>
             </div>
