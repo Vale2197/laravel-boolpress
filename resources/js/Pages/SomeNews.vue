@@ -25,8 +25,11 @@
             >
             <nav aria-label="Page navigation example">
                 <ul class="pagination" v-if="page">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li v-for="page in page.last_page" :key="page" class="page-item"><a class="page-link" href="#">{{page}}</a></li>
+                    <li class="page-item"><a class="page-link" @click="prevPage()" href="#">Previous</a></li>
+                    <li v-for="page in page.last_page" :key="page" @click="current(page)" class="page-item"
+                    >
+                            <a :class="page == counter ? 'active' : '' "  class="page-link" href="#">{{page}}</a>
+                    </li>
                     <li class="page-item"><a class="page-link" @click="nextPage()" href="#">Next</a></li>
                 </ul>
             </nav>
@@ -41,18 +44,40 @@ export default {
             posts: null,
             links: null,
             page: null,
+            counter: 0,
         }
     },
     methods: {
         nextPage(){
            axios.get('api/post/api?page=' + (this.page.current_page == 8 ? this.page.current_page = 1 : 1 +this.page.current_page++)).then(r => {
-               this.posts = r.data.data
+                this.posts = r.data.data
+                this.links = r.data.links;
+                this.page = r.data.meta;
+                this.counter = this.page.current_page;
+               
            })
-        }
+        },
+        prevPage() {
+            axios.get('api/post/api?page=' + (this.page.current_page == 1 ? this.page.current_page = this.page.last_page : --this.page.current_page)).then(r => {
+                this.posts = r.data.data
+                this.links = r.data.links;
+                this.page = r.data.meta;
+                this.counter = this.page.current_page;
+                console.log(this.page.current_page);
+           })
+        },
+        current(page) {
+            axios.get('api/post/api?page=' + page).then(r=> {
+                this.posts = r.data.data
+                this.links = r.data.links;
+                this.page = r.data.meta;
+                this.counter = this.page.current_page;
+
+            })
+        },
     },
     mounted() {
         axios.get('api/post/api').then(r => {
-            console.log(r.data.links, r.data.meta);
             this.posts = r.data.data;
             this.links = r.data.links;
             this.page = r.data.meta;
@@ -61,6 +86,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+    .active {
+        background-color: #3490dc;
+        color: white;
+        font-weight: bold;
+    }
 </style>
