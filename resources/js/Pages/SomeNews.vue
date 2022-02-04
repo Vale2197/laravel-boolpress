@@ -2,13 +2,15 @@
     <div class="container">
         view news
 
-        <div class="row">
-            <div class="col-4">
-                <div class="card" :key="post.title" v-for="post in posts">
-                    <h4>
-                        {{post.title}}
-                    </h4>
-                    <hr>
+        <div class="row g-3">
+            <div class="col-4" v-for="post in posts" :key="post.id"> 
+               <div class="card" style="width: 18rem; height: 100%;">
+                    <img :src="'storage/' + post.image" class="card-img-top" alt="#">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">{{post.subtitle}}</p>
+                        <a href="#" class="btn btn-primary">#</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,9 +25,9 @@ export default {
         }
     },
     mounted() {
-        axios.get('/api/post/api').then(r => {
+        axios.get('api/post/api').then(r => {
            
-          this.posts = r.data.data
+            this.posts = r.data.data
         })
     }
 }

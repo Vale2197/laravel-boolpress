@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.prova');
-})->name('home');
+
 
 Auth::routes();
 
@@ -59,3 +57,8 @@ Route::post('/contacts', 'ContactController@sendMail')->name('contact.mail');
 Route::get('/contacts/dash', 'ContactController@dashboard')->name('contacts.dashboard');
 Route::get('/contacts/{contact}', 'ContactController@show')->name('contact.show');
 Route::delete('/contacts/{contact}', 'ContactController@destroy')->name('contact.destroy');
+
+
+Route::get('/{any}', function () {
+    return view('guest.prova');
+})->name('home')->where('any', '.*');
